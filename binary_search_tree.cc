@@ -109,6 +109,16 @@ class BST {
     else
       return find_path_to_node(path,cur->right,d);
   }
+  void get_range(node* cur, vector<int> &L, int a, int b){
+    if (cur == NULL)
+      return;
+    if (cur->data < a)
+      return;
+    if (cur->data == a){
+      L.push_back(cur->data);
+      return;
+    }
+  }
 public:
   BST():head(NULL){}
   ~BST(){
@@ -156,6 +166,12 @@ public:
     cout << endl;
   }
 
+  vector<int> get_range(int a, int b){
+    vector<int> list;
+    get_range(head,list,a,b);
+    return list;
+  }
+
   
 };
 
@@ -200,6 +216,6 @@ int main(){
                         5,3,8,9,6,7,1,4};
     for (int i = 0; i < list.size(); ++i)
       T.insert(list[i]);
-    T.find_path_between_nodes(15,20);
+    T.print();
     return 0;
   }
